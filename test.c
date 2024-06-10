@@ -40,7 +40,8 @@ PROCESS_THREAD(test_process, ev, data) {
 	static uint16_t light;
 	static uint32_t ticks = 0;
 
-	int16_t temperature[], humidity;
+	int16_t temperature[3], humidity[3];
+	int16_t temp_mean, hum_mean;
 
 	ticks = 0;
 
@@ -52,9 +53,13 @@ PROCESS_THREAD(test_process, ev, data) {
   		ticks++;
   		PROCESS_WAIT_EVENT_UNTIL(ev == PROCESS_EVENT_TIMER);
 
-  	    if(dht22_read_all(&temperature, &humidity) != DHT22_ERROR) {
-      		printf("Temperature %02d.%02d ºC, ", temperature / 10, temperature % 10);
-      		printf("Humidity %02d.%02d RH\n", humidity / 10, humidity % 10);
+  	    if(dht22_read_all(&temperature[0], &humidity[0]) != DHT22_ERROR) {
+  	    	dht22_read_all(&temperature[1], &humidity[1]);
+  	    	dht22_read_all(&temperature[2], &humidity[2]);
+  	    	temp_mean = (temperature[0] + temperature[1] + temperature[2]) / 3;
+  	    	hum_mean = (humidity[0] + humidity[1] + humidity[2]) / 3;
+      		printf("Temperature(3 sample mean) %02d.%02d ºC, ", temp_mean / 10, temp_mean % 10);
+      		printf("Humidity(3 sample mean) %02d.%02d RH\n", hum_mean / 10, hum_mean % 10);
     	} else {
       		printf("Failed to read the sensor\n");
     	}
