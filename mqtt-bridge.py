@@ -15,17 +15,17 @@ import sys
 
 # There is a Mosquitto server running locally on the Virtual Machine (for tunslip use). 
 # For border router use, you should change this to the IPv6 server of the local MQTT broker:
-LOCAL_MQTT_URL = "localhost"
+LOCAL_MQTT_URL = "fd00::1"
 # You may also try "test.mosquitto.org"
 
 # A topic to publish information about the zolertia board(s):	 
 SENSORS_TOPIC = "zolertia/sensor"
 
 # Address of the Cloud MQTT Broker:
-CLOUD_MQTT_URL = "a1iy1shptb9lan-ats.iot.eu-west-1.amazonaws.com"
+CLOUD_MQTT_URL = "ashp2etl1rpx2-ats.iot.eu-north-1.amazonaws.com"
 CERTIFICATE_AUTH_FILE = "iot_certs/AmazonRootCA1.pem"
-CERT_PEM_FILE = "iot_certs/3e3a919915aba07b81df2f5f372219499b7ac84114484e7626ff002308c61d8c-certificate.pem.crt"
-PRIVATE_KEY_FILE = "iot_certs/3e3a919915aba07b81df2f5f372219499b7ac84114484e7626ff002308c61d8c-private.pem.key"
+CERT_PEM_FILE = "iot_certs/e584295e7afb273500441f12c11a76a7e22e4db87d0af50b0a262ab1e506cad6-certificate.pem.crt"
+PRIVATE_KEY_FILE = "iot_certs/e584295e7afb273500441f12c11a76a7e22e4db87d0af50b0a262ab1e506cad6-private.pem.key"
 
 # A topic to get information from the cloud:	 
 CLOUD_TOPIC = "cloud/action"
